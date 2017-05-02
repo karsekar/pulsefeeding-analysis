@@ -1,6 +1,8 @@
 # pulsefeeding-analysis
 
 ## Introduction
+*NOTE: This Github will contain all code upon publication of the manuscript*
+
 The data and MATLAB and Python code used for analysis and figure generation of *E. coli* pulsing/starvation project is provided here. All the MATLAB code was written in version 2015b.
 
 ## The parts

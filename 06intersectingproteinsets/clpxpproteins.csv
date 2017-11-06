@@ -1,0 +1,61 @@
+?crl;P24251;9;C-M1a;N-M3 ++;Curlin genes regulatory protein
+?dksA;P18274;6;C-M1;N-M3 ++;DnaK suppressor protein
+?fnr;P03019;8;C-M1;N-M1 ++;Transcription regulator FNR
+?iscR;P77484;9;C-M1;N-M2 ++;Iron-sulfur cluster regulator
+?lexA;P03033;3;;N-M2 ++;LexA repressor
+?rpoS;P13445;110;;N-M1 +;RNA polymerase sigma factor ?S
+?rsd;P31690;1;C-M2;;Regulator of sigma D
+?rseA;P38106;2;;;Negative regulator of sigma-E
+?rplE;P02389;2;;N-M1 +;50S ribosomal protein L5
+?rplJ;P02408;57;C-M1;N-M3 +;50S ribosomal protein L10
+?rplK;P02409;5;;N-M1 +;50S ribosomal protein L11
+?rplN;P02411;17;;;50S ribosomal protein L14
+?rplS;P02420;11;;N-M1 +;50S ribosomal protein L19
+?rplU;P02422;2;C-M1;N-M3 +;50S ribosomal protein L21
+?tufB;P02990;2;;N-M3 +;Elongation factor Ef-Tu
+?clpX;P33138;5;;N/A;Clp protease ATP-binding subunit
+?dnaK;P04475;75;;N/A;Chaperone Hsp70
+?gcp;P05852;7;C-M1;;O-sialoglycoprotein endopeptidase
+?groEL;P06139;6;;N/A;Chaperone Hsp60
+?lon;P08177;3;;;ATP-dependent protease Lon
+?pepB;P37095;2;C-M1;;Aminopeptidase B
+?dps;P27430;70;;N-M1 ++;Global regulator protein Dps
+?katE;P21179;1;C-M1;N-M3 +;Hydroperoxidase II
+?nrdH;Q47414;2;C-M1;N-M2 +;Glutaredoxin-like protein NrdH
+?tpx;P37901;4;C-M1;N-M1 +;Thiol peroxidase
+?ftsZ;P06138;3;;N/A;Cell division GTPase
+?insH;P03837;4;;N-M3 ++;IS5 transposase
+?cheW;P07365;2;C-M1;N-M1 ++;Chemotaxis protein CheW
+?cysA;P16676;13;C-M1;N-M1 ++;Sulfate permease A protein
+?exbB;P18783;5;C-M1;;Uptake of enterochelin
+?gatA;P37187;5;;N-M1 ++;Galactitol-specific enzyme IIA
+?ompAb;P02934;4;;N-M2 +;Outer membrane protein 3a
+?secA;P10408;5;;N-M1 +;Protein translocase protein SecA
+?aceAb;P05313;12;;N-M2 ++;Isocitrate lyase
+?acnB;P36683;1;C-M1;;Aconitase
+?aldA;P25553;1;C-M1;;Aldehyde dehydrogenase
+?atpD;P00824;6;;N-M1 ++;? subunit of F1 ATP synthase
+?cysD;P21156;2;;N-M1 +;Sulfate adenylyltransferase
+?dadA;P29011;1;;N-M2 ++;D-amino acid dehydrogenase
+?fabB;P14926;1;;N-M2 ++;?-ketoacyl-acyl carrier protein synthase I
+?gapAb;P06977;4;;N-M1 ++;Glyceraldehyde 3-phosphate dehydrogenase
+?gatY;P37192;3;;N-M2 ++;Tagatose 1,6-bisphophate aldolase
+?gatZ;P37191;5;;N-M2 ++;Tagatose 6-phosphate kinase
+?glcB;P37330;2;;N-M3 ++;Malate synthase
+?glpD;P13035;1;C-M1;;Glycerol 3-phosphate dehydrogenase
+?glyA;P00477;2;C-M1;N-M1 +;Glycine hydroxymethyltransferase
+?iscS;P39171;1;;N-M2 ++;Cysteine desulferase
+?iscU;P77310;4;;;IscU
+?lipA;P25845;3;;N-M2 ++;Lipoic acid synthetase
+?lldD;P33232;2;C-M1a;;L-Lactate dehydrogenase
+?moaA;P30745;3;;N-M3 +;Molybdopterin biosynthesis, protein A
+?paaA;P76077;1;C-M2;;Phenylacetic acid degradation protein
+?pncB;P18133;4;C-M2;N-M1 +;Nicotinate phosphoribosyltranferase
+?ribB;P24199;8;C-M2a;;Riboflavin biosynthase
+?tnaAb;P00913;32;;N-M1 +;Tryptophanase
+?udp;P12758;1;;N-M1 +;Uridine phosphorylase
+?ybaQ;P77303;1;C-M2a;N-M3 +;
+?ycbW;P75862;5;C-M1;N-M2 ++;
+?ydaM;P77302;3;C-M1a;;
+?yebO;P76266;4;;;
+?ygaT;P76621;7;;++;

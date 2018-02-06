@@ -3,7 +3,7 @@
 """
 Created on Thu Apr 20 18:30:40 2017
 
-@author: Elad Noor
+@author: noore
 """
 
 # dx/dt = a0 + a1*f - Vmax * x / (Km + x)
@@ -12,9 +12,9 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import scipy
 
-SMOOTH_MODEL_COLOR = (0.9, 0.5, 0.9)
-PULSED_MODEL_COLOR = (0.5, 0.9, 0.9)
-NUMERICAL_COLOR = (0.9, 0.9, 0.5)
+MODEL_COLOR_DICT = {'smooth': (0.9, 0.5, 0.9),
+                    'pulsing': (0.5, 0.9, 0.9),
+                    'numerical': (0.9, 0.9, 0.5)}
 
 MIN_LAG_TIME = 10. # minutes
 # the uptake rate will be used to approximate the shape of each pulse
@@ -116,16 +116,6 @@ def find_lag_time_smooth(a0, a1, f, Vmax, Km, x0, x1):
         this is the exact analytical solution for the ODE, solved for finding
         the time difference between to values of ftsZ (x0 and x1)
     """
-    #p0 = Vmax/(a0 + a1*f)
-    #p1 = -Vmax * (1.0 - 1/p0)**2 / Km
-    #p3 = Km/(p0 - 1.0)
-    #tmp = (p3 - x0)/(p3 - x1)
-    #if tmp < 0:
-    #    raise ValueError('infinite lag time')
-    #return (x1 - x0)/(a0 + a1*f - Vmax) - np.log(tmp)/p1
-    #x_inf = Km * (a0 + a1*f)/(Vmax - a0 - a1*f)
-    #tmp = (x1 - x_inf)/(x0 - x_inf)
-
     a = (x1 - x0)/(a0 + a1*f - Vmax)
     b = Km*Vmax/(a0 + a1*f - Vmax)**2
     tmp = 1.0 + ((x1 - x0)*(a0 + a1*f - Vmax))/(x0*(a0 + a1*f - Vmax) + Km*(a0 + a1*f))
@@ -171,7 +161,7 @@ def RMSE(a1):
 def plot_data_and_predictions(ax, data_df, lag_time_func, f_critical, linecolor):
     # draw model predictions
     f_range = np.linspace(f_critical+1e-5, f_max, 1000) # mmol glc/gCDW/h
-    ax.plot(f_range, map(lag_time_func, f_range),
+    ax.plot(f_range, list(map(lag_time_func, f_range)),
             '-', label='model', color=linecolor, linewidth=2)
 
     # draw measured data point
@@ -210,7 +200,8 @@ for f in [0.25, 0.5, 0.75, 1.0]:
                      else \
                          ftsZ_smooth(a0, a1_init, f, Vmax, Km, x_starve, t-t_starve)
     t_range = np.linspace(0, t_max, 300)
-    ax.plot(t_range, map(f_full, t_range), '-', label='f = %.2g' % f)
+    ax.plot(t_range, list(map(f_full, t_range)),
+            '-', label='f = %.2g' % f)
 ax.legend()
 ax.set_xlim(0, t_max_time_course)
 ax.set_ylim(x_starved-100, x_initial+600)
@@ -231,7 +222,7 @@ f_min = data_df['feedrate'].min()
 a1_min = (1.0/f_min) * (Vmax * x_initial / (Km + x_initial) - a0)
 
 a1_range = np.linspace(a1_min+1e-5, 20, 50)
-r2_values = map(RMSE, a1_range)
+r2_values = list(map(RMSE, a1_range))
 a1 = a1_range[np.argmin(r2_values)]
 rmse_max = RMSE(a1)
 f_critical = (1.0/a1) * (Vmax * x_initial / (Km + x_initial) - a0)
@@ -250,7 +241,7 @@ ax.set_title(r'finding the best $\alpha_1$')
 # plot results
 ax = axs[2]
 t_lag_smooth = lambda f: find_lag_time_smooth(a0, a1, f, Vmax, Km, x_starved, x_initial)
-plot_data_and_predictions(ax, data_df, t_lag_smooth, f_critical, SMOOTH_MODEL_COLOR)
+plot_data_and_predictions(ax, data_df, t_lag_smooth, f_critical, MODEL_COLOR_DICT['smooth'])
 ax.set_title(r'best fit ($\alpha_1$ = %.1f)' % a1)
 
 fig.tight_layout()
@@ -269,7 +260,8 @@ for f in [0.25, 0.5, 0.75, 1.0]:
                      else \
                          ftsZ_pulsed(a0, a1_init, MAX_UPTAKE_RATE, t_pulse, t_interval, Vmax, Km, x_starve, t-t_starve)
     t_range = np.linspace(0, t_max, 300)
-    ax.plot(t_range, map(f_full, t_range), '-', label=r'$t_{interval}$ = %.2g min' % t_interval)
+    ax.plot(t_range, list(map(f_full, t_range)),
+            '-', label=r'$t_{interval}$ = %.2g min' % t_interval)
 ax.legend()
 ax.set_xlim(0, t_max_time_course)
 ax.set_ylim(x_starved-100, x_initial+600)
@@ -279,50 +271,52 @@ ax.plot(ax.get_xlim(), [x_initial, x_initial], 'k:', alpha=0.3)
 ax.set_xlabel('Time (min)')
 ax.set_ylabel('[FtsZ]')
 
-#%%
 ax = axs[1]
 t_lag_pulsed = lambda f: find_lag_time_pulsed(a0, a1, MAX_UPTAKE_RATE, t_pulse,
                                               t_pulse * (MAX_UPTAKE_RATE - f) / f,
                                               Vmax, Km, x_starved, x_initial)
-plot_data_and_predictions(ax, data_df, t_lag_pulsed, f_critical, PULSED_MODEL_COLOR)
+plot_data_and_predictions(ax, data_df, t_lag_pulsed, f_critical, MODEL_COLOR_DICT['pulsing'])
 
 ax.set_title(r'$t_{pulse}$ = %.1f [min]' % (t_pulse))
 
-#%%
 # use the pulsing model to predict lag times using the relevant parameters
 # (i.e. pulse time, pulse interval)
-data_df['pulsed_lag_time'] = 0
-data_df['smooth_lag_time'] = 0
+validation_df = []
 for i, row in data_df.iterrows():
     f = row['feedrate']
-
-    data_df.at[i, 'smooth_lag_time'] = find_lag_time_smooth(a0, a1, f,
-       Vmax, Km, x_starved, x_initial)
+    lag_obs = row['lag_time']
+    
+    lag_smooth = find_lag_time_smooth(a0, a1, f, Vmax, Km, x_starved, x_initial)
+    validation_df.append((lag_obs, lag_smooth, 'smooth'))
 
     t_pulse = row['pulse_length']
     t_interval = row['pulse_interval']
-    data_df.at[i, 'pulsed_lag_time'] = find_lag_time_pulsed(a0, a1, MAX_UPTAKE_RATE, t_pulse,
-       t_interval, Vmax, Km, x_starved, x_initial)
+    lag_pulsed = find_lag_time_pulsed(a0, a1, MAX_UPTAKE_RATE, t_pulse,
+                                      t_interval, Vmax, Km, x_starved, x_initial)
+    validation_df.append((lag_obs, lag_pulsed, 'pulsing'))
 
-#%%
+validation_df = pd.DataFrame(validation_df,
+                             columns=['Measured Lag time [min]',
+                                      'Predicted Lag time [min]',
+                                      'model'])
 ax = axs[2]
-rmse_smooth = RMSE_DataFrame(data_df, 'lag_time', 'smooth_lag_time')
-rmse_pulsed = RMSE_DataFrame(data_df, 'lag_time', 'pulsed_lag_time')
-ax.plot(data_df['smooth_lag_time'], data_df['lag_time'], '.', color=SMOOTH_MODEL_COLOR,
-        label='smooth (RMSE = %.2f)' % rmse_smooth, markersize=10)
-ax.plot(data_df['pulsed_lag_time'], data_df['lag_time'], 'c.', color=PULSED_MODEL_COLOR,
-        label='pulsing (RMSE = %.2f)' % rmse_pulsed, markersize=10)
-ax.set_xscale('log')
-ax.set_yscale('log')
-ax.set_xlabel('Predicted Lag time [min]')
-ax.set_ylabel('Measured Lag time [min]')
-ax.legend()
-ax.set_ylim(MIN_LAG_TIME*0.9, 1e3)
-ax.set_xlim(MIN_LAG_TIME*0.9, 1e3)
-ax.plot([MIN_LAG_TIME*0.9, 1e3], [MIN_LAG_TIME*0.9, 1e3], 'k:', alpha=0.3)
+for i, model_type in enumerate(validation_df.model.unique()):
+    selected_df = validation_df.loc[validation_df.model == model_type, :]  
+    rmse = RMSE_DataFrame(selected_df,
+                          'Measured Lag time [min]',
+                          'Predicted Lag time [min]')
+    selected_df.plot.scatter(y='Measured Lag time [min]',
+                             x='Predicted Lag time [min]',
+                             logx=True, logy=True,
+                             color=MODEL_COLOR_DICT[model_type],
+                             xlim=(MIN_LAG_TIME*0.9, 1e3),
+                             ylim=(MIN_LAG_TIME*0.9, 1e3),
+                             ax=ax, label=model_type)
+ax.plot([MIN_LAG_TIME*0.9, 1e3], [MIN_LAG_TIME*0.9, 1e3], 'k:', alpha=0.3,
+        label=None)
 ax.set_title('comparing both models')
+ax.legend()
 
-#%%
 fig.tight_layout()
 fig.savefig('FigS2.pdf')
 
@@ -332,12 +326,16 @@ fig.savefig('FigS2.pdf')
 fig, ax = plt.subplots(1, 1, figsize=(5, 5))
 t_lag_numerical = lambda f: find_lag_time_numerical(a0, a1, f, Vmax, Km, x_starved, x_initial)
 f_range = np.linspace(f_critical+1e-5, f_max, 1000) # mmol glc/gCDW/h
-ax.plot(f_range, map(t_lag_numerical, f_range), '-', label='numerical (smooth)',
-        color=NUMERICAL_COLOR, linewidth=2)
-ax.plot(f_range, map(t_lag_smooth, f_range), '-', label='analytical (smooth)',
-        color=SMOOTH_MODEL_COLOR, linewidth=2)
-ax.plot(f_range, map(t_lag_pulsed, f_range), '-', label='analytical (pulsing)',
-        color=PULSED_MODEL_COLOR, linewidth=2)
+
+ax.plot(f_range, list(map(t_lag_numerical, f_range)),
+        '-', label='numerical (smooth)',
+        color=MODEL_COLOR_DICT['numerical'], linewidth=2)
+ax.plot(f_range, list(map(t_lag_smooth, f_range)),
+        '-', label='analytical (smooth)',
+        color=MODEL_COLOR_DICT['smooth'], linewidth=2)
+ax.plot(f_range, list(map(t_lag_pulsed, f_range)),
+        '-', label='analytical (pulsing)',
+        color=MODEL_COLOR_DICT['pulsing'], linewidth=2)
 ax.set_xlim(0, f_max)
 ax.set_ylim(MIN_LAG_TIME*0.9, 1e3)
 ax.set_yscale('log')

@@ -1,6 +1,6 @@
 %Analysis to compare perturbations on lag time
 % by Karthik Sekar (karsekar@gmail.com)
-% last updated 08.08.2017
+% last updated 21.03.2018
 % written for Matlab 2015b
 
 close all;
@@ -51,6 +51,30 @@ timemax = 300;
 % filetoopen = './data/07nitrogen.csv';
 % WTindex = 1;
 % timemax = 400;
+
+%for the ftsA experiment
+% colors = {[0/255 114/255 189/255],[237/255 177/255 32/255]};
+% filetoopen = './data/08ftsA.csv';
+% WTindex = 1;
+% timemax = 360;
+% 
+% %for the ftsL experiment
+% colors = {[0/255 114/255 189/255],[217/255 83/255 25/255],[237/255 177/255 32/255]};
+% filetoopen = './data/09ftsL.csv';
+% WTindex = 1;
+% timemax = 360;
+% 
+% %for the ftsB experiment
+% colors = {[0/255 114/255 189/255],[217/255 83/255 25/255],[237/255 177/255 32/255]};
+% filetoopen = './data/10ftsB.csv';
+% WTindex = 1;
+% timemax = 360;
+% 
+% %for the ftsN experiment
+% colors = {[0/255 114/255 189/255],[217/255 83/255 25/255],[237/255 177/255 32/255]};
+% filetoopen = './data/11ftsN.csv';
+% WTindex = 1;
+% timemax = 360;
 
 
 beta0_200 = [50, 0.07, 1];

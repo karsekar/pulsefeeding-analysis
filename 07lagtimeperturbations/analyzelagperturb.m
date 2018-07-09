@@ -6,7 +6,6 @@
 close all;
 clear all;
 
-
 %choose the experiment and comment as necessary
 
 %for the Protease inhibitor experiment
@@ -75,6 +74,24 @@ timemax = 300;
 % filetoopen = './data/11ftsN.csv';
 % WTindex = 1;
 % timemax = 360;
+
+% %for the ftsZ experiment to shift the critical rate
+% colors = {[0/255 114/255 189/255],[217/255 83/255 25/255],[237/255 177/255 32/255]};
+% filetoopen = './data/12ftsZshift.csv';
+% WTindex = 1;
+% timemax = 360;
+
+%for the ftsZ natural starvation experiments
+colors = {[0/255 114/255 189/255],[237/255 177/255 32/255]};
+filetoopen = './data/13ftsZnatural1.csv';
+WTindex = 1;
+timemax = 250;
+
+%for the ftsZ natural starvation experiments
+colors = {[0/255 114/255 189/255],[237/255 177/255 32/255]};
+filetoopen = './data/14ftsZnatural2.csv';
+WTindex = 1;
+timemax = 250;
 
 
 beta0_200 = [50, 0.07, 1];

@@ -7,7 +7,7 @@ The data and MATLAB and Python code used for analysis and figure generation of *
 ## The parts
 This Github is divided as follows:
 * Part 1 - Data and analysis of lag time versus feeding frequency - contains all of the OD data and code used for the wild-type pulsing experiments. Code generates the following plots:
-  * All OD versus time plots with linear threshold fitting 
+  * All OD versus time plots with linear threshold fitting
   * Lag time versus feedrate
   * Feedrate versus linear growth rate
   * Total glucose needed for proliferation versus feedrate
@@ -23,4 +23,5 @@ This Github is divided as follows:
 * Part 10 - Microfluidic data analysis. Code generates the cumulative fraction curves, GFP/cell over time, and length/cell over time.
 * Part 11 - Code used to generating labeling fraction figure.
 * Part 12 - Code used to quantify Western blot and generate bar graph.
+* Part 13 - Code used to generate mother machine FtsZ-mVenus figure.
 * Common - contains common functions used throughout the different parts.

@@ -4,6 +4,10 @@
 
 The data and MATLAB and Python code used for analysis and figure generation of *E. coli* pulsing/starvation project is provided here. All the MATLAB code was written in version 2015b.
 
+If using any of the data or code, please cite the following article:
+
+Sekar et al. Synthesis and degradation of FtsZ quantitatively predict the first cell division in starved bacteria. Molecular Systems Biology. Volume 14, Issue 11. (2018). 
+
 ## The parts
 This Github is divided as follows:
 * Part 1 - Data and analysis of lag time versus feeding frequency - contains all of the OD data and code used for the wild-type pulsing experiments. Code generates the following plots:

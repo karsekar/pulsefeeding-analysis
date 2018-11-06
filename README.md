@@ -6,7 +6,12 @@ The data and MATLAB and Python code used for analysis and figure generation of *
 
 If using any of the data or code, please cite the following article:
 
-Sekar et al. ``[Synthesis and degradation of FtsZ quantitatively predict the first cell division in starved bacteria.](http://msb.embopress.org/content/14/11/e8623)'' *Molecular Systems Biology*. Volume 14, Issue 11. (2018). 
+[Synthesis and degradation of FtsZ quantitatively predict the first cell division in starved bacteria](http://msb.embopress.org/content/14/11/e8623)
+
+Karthik Sekar, Roberto Rusconi, John T Sauls, Tobias Fuhrer, Elad Noor, Jen Nguyen, Vicente I Fernandez, Marieke F Buffing, Michael Berney, Suckjoon Jun, Roman Stocker, Uwe Sauer
+
+*Molecular Systems Biology*, November 2018, EMBO
+DOI: 10.15252/msb.20188623
 
 ## The parts
 This Github is divided as follows:
